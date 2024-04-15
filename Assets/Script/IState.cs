@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public interface IState
-{
-    public void PlayState();
+public interface IState{
+    public void PlayState(Transform transform, Rigidbody2D rigidbody2D);
 }

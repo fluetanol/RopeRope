@@ -4,11 +4,9 @@ using UnityEngine;
 public abstract class SingletonMonobehavior<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static T Instance;
-
     protected void Awake() {
         DontDestroyOnLoad(this);
     }
-    
     protected abstract void SetInstance();
 }
 

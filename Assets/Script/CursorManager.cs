@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +8,7 @@ public interface IMouseCursorAim{
 
 public class CursorManager : SingletonMonobehavior<CursorManager>, IMouseCursorAim
 {
-    void Awake() {
+    new void Awake() {
         base.Awake();
         SetInstance();
     }

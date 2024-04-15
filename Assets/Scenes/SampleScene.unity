@@ -326,7 +326,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -370,9 +370,11 @@ GameObject:
   - component: {fileID: 578891114}
   - component: {fileID: 578891113}
   - component: {fileID: 578891117}
-  - component: {fileID: 578891115}
   - component: {fileID: 578891116}
+  - component: {fileID: 578891120}
+  - component: {fileID: 578891119}
   - component: {fileID: 578891118}
+  - component: {fileID: 578891121}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -456,7 +458,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578891110}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -510,18 +512,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &578891115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578891110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4192c9c54345384185e356d37f2434b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &578891116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,8 +539,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 578891115}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+      - m_Target: {fileID: 578891120}
+        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -581,8 +571,8 @@ MonoBehaviour:
     m_ActionName: Locomotion/Aim[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 578891115}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+      - m_Target: {fileID: 578891120}
+        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -714,6 +704,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdc68c63ef6a9fb4e9f64e7da5deec95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &578891119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578891110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4192c9c54345384185e356d37f2434b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerState: 0
+--- !u!114 &578891120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578891110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547ee6c7b33409d46b14b29ae410874b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &578891121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578891110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3f1c3e66b15094181c1e462c85ae03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &619394800

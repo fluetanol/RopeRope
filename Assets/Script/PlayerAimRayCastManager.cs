@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AimRayCastManager : MonoBehaviour
+public class PlayerAimRayCastManager : MonoBehaviour
 {
     private LineRenderer _lineRenderer;
     void Start(){

@@ -30,6 +30,9 @@ public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
                 case EPlayerState.Run:
                     d_playerState[ePlayerState] = new RunState();
                     break;
+                case EPlayerState.RunStop:
+                    d_playerState[ePlayerState] = new RunStopState();
+                    break;
                 case EPlayerState.Dead:
                     d_playerState[ePlayerState] = new DeadState();
                     break;
