@@ -43,7 +43,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Aim"",
@@ -53,6 +53,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d488fd0-069d-4026-bbaa-076e1fefd330"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,17 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2c39bd7-a832-43f8-ae81-cb23cb6ef5d1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,6 +141,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Locomotion_NormalMove = m_Locomotion.FindAction("NormalMove", throwIfNotFound: true);
         m_Locomotion_Jump = m_Locomotion.FindAction("Jump", throwIfNotFound: true);
         m_Locomotion_Aim = m_Locomotion.FindAction("Aim", throwIfNotFound: true);
+        m_Locomotion_Click = m_Locomotion.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,6 +206,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Locomotion_NormalMove;
     private readonly InputAction m_Locomotion_Jump;
     private readonly InputAction m_Locomotion_Aim;
+    private readonly InputAction m_Locomotion_Click;
     public struct LocomotionActions
     {
         private @PlayerControl m_Wrapper;
@@ -192,6 +214,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @NormalMove => m_Wrapper.m_Locomotion_NormalMove;
         public InputAction @Jump => m_Wrapper.m_Locomotion_Jump;
         public InputAction @Aim => m_Wrapper.m_Locomotion_Aim;
+        public InputAction @Click => m_Wrapper.m_Locomotion_Click;
         public InputActionMap Get() { return m_Wrapper.m_Locomotion; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -210,6 +233,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
         }
 
         private void UnregisterCallbacks(ILocomotionActions instance)
@@ -223,6 +249,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
         }
 
         public void RemoveCallbacks(ILocomotionActions instance)
@@ -245,5 +274,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnNormalMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }

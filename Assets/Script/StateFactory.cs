@@ -24,17 +24,20 @@ public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
                 case EPlayerState.Idle:
                     d_playerState[ePlayerState] = new IdleState();
                     break;
-                case EPlayerState.Jump:
-                    d_playerState[ePlayerState] = new JumpState();
-                    break;
                 case EPlayerState.Run:
                     d_playerState[ePlayerState] = new RunState();
                     break;
                 case EPlayerState.RunStop:
                     d_playerState[ePlayerState] = new RunStopState();
                     break;
+                case EPlayerState.Air:
+                    d_playerState[ePlayerState] = new AirState();
+                    break;
                 case EPlayerState.Dead:
                     d_playerState[ePlayerState] = new DeadState();
+                    break;
+                case EPlayerState.Jump:
+                    d_playerState[ePlayerState] = new AirState();
                     break;
                 default:
                     break;

@@ -6,6 +6,7 @@ public abstract class SingletonMonobehavior<T> : MonoBehaviour where T : MonoBeh
     public static T Instance;
     protected void Awake() {
         DontDestroyOnLoad(this);
+        SetInstance();
     }
     protected abstract void SetInstance();
 }

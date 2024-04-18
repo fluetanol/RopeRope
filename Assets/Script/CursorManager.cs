@@ -8,12 +8,6 @@ public interface IMouseCursorAim{
 
 public class CursorManager : SingletonMonobehavior<CursorManager>, IMouseCursorAim
 {
-    new void Awake() {
-        base.Awake();
-        SetInstance();
-    }
-
-
     public void OnMouseAim(InputAction.CallbackContext callback)
     {
         Vector3 mousePos = callback.ReadValue<Vector2>();
