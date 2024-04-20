@@ -28,7 +28,7 @@ public class PlayerAimRayCastManager : MonoBehaviour, IMouseClick
             _aimPosition = (Vector3)CursorManager.Instance.GetCursorPosition() - this.transform.position;
             _lineRenderer.SetPosition(1, _aimPosition);
         }
-        if(time>1f){
+        if(time>0.5f){
             ResetRope();
         }
     }
