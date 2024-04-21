@@ -68,14 +68,14 @@ Material:
     - _Fullscreen_DstColorBlend: 10
     - _Fullscreen_SrcAlphaBlend: 1
     - _Fullscreen_SrcColorBlend: 5
-    - _NormalThreshold: 1.66
+    - _NormalThreshold: 2
     - _OVERLAY: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _depthline: 5.4
     m_Colors:
-    - _Color: {r: 0.6040319, g: 1, b: 0, a: 1}
+    - _Color: {r: 0.79593885, g: 1, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Thick: {r: 2, g: 2, b: 0, a: 0}
+    - _Thick: {r: 2.5, g: 2.5, b: 0, a: 0}
   m_BuildTextureStacks: []

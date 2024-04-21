@@ -7,3 +7,19 @@ public enum EPlayerState
     Dead, // 죽음
     Jump
 }
+
+public enum EPlayerInputState{
+    Run,
+    Jump,
+    Launch,
+    RopeMove
+}
+
+public enum EPlayerCurrentState
+{
+    Idle,
+    Air,
+    Dash,
+    Rope,
+    Dead
+}

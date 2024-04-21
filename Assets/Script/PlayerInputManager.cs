@@ -1,5 +1,6 @@
 
 
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,7 +20,7 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
     private RaycastHit2D _landHit; 
     private Vector2 _moveVector;
     public int hitCount;
-
+    public float KoyoteTime;
 
     float time;
 
@@ -31,11 +32,18 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
 
     public void FixedUpdate(){
         Move();
+        if(PlayerStatus.isKoyote && KoyoteTime >= PlayerStatus.KoyoteTime){
+            PlayerStatus.isKoyote = false;
+            KoyoteTime = 0;
+        }
+        else if(PlayerStatus.isKoyote){
+            KoyoteTime += Time.fixedDeltaTime;
+        }
     }
 
     public void OnJump(InputAction.CallbackContext callback){
-        if(callback.performed && PlayerStateManager.Instance.PlayerState != EPlayerState.Air) 
-        PlayerStateManager.Instance.PlayerState = EPlayerState.Jump;
+        if(callback.performed && (PlayerStateManager.Instance.PlayerState != EPlayerState.Air || PlayerStatus.isKoyote)) 
+            PlayerStateManager.Instance.PlayerState = EPlayerState.Jump;
     }
 
     public void OnMove(InputAction.CallbackContext callback){
@@ -100,7 +108,10 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
         }
 
 
-        if (hitCount == 0 || !HitsPoisitonControl(_hits, d)) PlayerStateManager.Instance.PlayerState = EPlayerState.Air;
+        if (hitCount == 0 || !HitsPoisitonControl(_hits, d)){
+            PlayerStateManager.Instance.PlayerState = EPlayerState.Air;
+            PlayerStatus.isKoyote = true;
+        } 
         
     }
 
@@ -110,6 +121,8 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
         {
             RaycastHit2D k = _hits[i];
             Bounds b = _playerCollider2d.bounds;
+            float angle = Math.Abs(Vector2.Angle(Vector2.up, k.normal));
+
             if (k.normal == Vector2.left && _moveVector != Vector2.left)
             {
                 PlayerStatus.NextPos.x = k.collider.ClosestPoint(PlayerStatus.CurrentPos).x - (b.size.x - 0.2f) / 2;
@@ -120,7 +133,8 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
                 PlayerStatus.NextPos.x = k.collider.ClosestPoint(PlayerStatus.CurrentPos).x + (b.size.x - 0.2f) / 2;
                 PlayerStatus.CurrentMoveDirection.x = 0;
             }
-            else if ((k.normal == Vector2.up && d < 0.1f) || (k.normal == Vector2.up && _landHit.transform.IsUnityNull()))
+
+            else if ((angle<45 && d < 0.1f) || (angle<45 && _landHit.transform.IsUnityNull()))
             {
                 PlayerStateManager.Instance.PlayerState = EPlayerState.Idle;
                 _landHit = k;
@@ -129,6 +143,9 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
                 PlayerStatus.CurrentMoveDirection.y = 0;
                 PlayerStatus.CurrentAirDirection = Vector2.zero;
             }
+            print(Vector2.Angle(Vector2.up, k.normal) +" "+ k.normal);
+            if(k.normal != Vector2.up)
+            Debug.DrawLine(k.point, k.point+k.normal,Color.red,5);
         }
         return isLand;
     }
