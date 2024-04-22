@@ -106,14 +106,14 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
             b.x = 0;
             d = Vector2.Distance(a, b);
         }
-
-
         if (hitCount == 0 || !HitsPoisitonControl(_hits, d)){
             PlayerStateManager.Instance.PlayerState = EPlayerState.Air;
             PlayerStatus.isKoyote = true;
         } 
         
     }
+
+
 
     private bool HitsPoisitonControl(RaycastHit2D[] hits, float d){
         bool isLand = false;
@@ -143,9 +143,14 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
                 PlayerStatus.CurrentMoveDirection.y = 0;
                 PlayerStatus.CurrentAirDirection = Vector2.zero;
             }
+
+            else if(k.normal == Vector2.down && k.transform.tag != "SemiTerrain"){
+                PlayerStatus.CurrentMoveDirection.y = 0;
+            }
+
+
             print(Vector2.Angle(Vector2.up, k.normal) +" "+ k.normal);
-            if(k.normal != Vector2.up)
-            Debug.DrawLine(k.point, k.point+k.normal,Color.red,5);
+            if(k.normal != Vector2.up) Debug.DrawLine(k.point, k.point+k.normal,Color.red,5);
         }
         return isLand;
     }

@@ -15,7 +15,7 @@ public enum EPlayerInputState{
     RopeMove
 }
 
-public enum EPlayerCurrentState
+public enum EPlayerConditionState
 {
     Idle,
     Air,
