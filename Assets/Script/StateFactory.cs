@@ -2,20 +2,19 @@ using System.Collections.Generic;
 
 public interface IStateFactory
 {
-    public IState CreateState(int eState);
     public IInputState CreateInputState(int eInputState);
     public IConditionState CreateConditionState(int eConditionState);
 }
 
 public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
 {
-    private Dictionary<EPlayerState, IState> d_playerState;
     private Dictionary<EPlayerInputState, IInputState> d_playerInputState;
     private Dictionary<EPlayerConditionState, IConditionState> d_playerConditionState;
 
     public PlayerStateFactory()
     {
-        d_playerState = new();
+        d_playerInputState =  new();
+        d_playerConditionState = new();
     }
 
     public IConditionState CreateConditionState(int eConditionState)
@@ -23,7 +22,20 @@ public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
         EPlayerConditionState conditionState = (EPlayerConditionState)eConditionState;
         if (!d_playerConditionState.ContainsKey(conditionState))
         {
-
+            switch (conditionState)
+            {
+                case EPlayerConditionState.Idle:
+                    d_playerConditionState[conditionState] = new IdleState();
+                    break;
+                case EPlayerConditionState.Air:
+                    d_playerConditionState[conditionState] = new AirState();
+                    break;
+                case EPlayerConditionState.Dead:
+                    d_playerConditionState[conditionState] =  new DeadState();
+                    break;
+                default:
+                    break;
+            }
         }
 
         return d_playerConditionState[conditionState];
@@ -32,39 +44,26 @@ public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
 
     public IInputState CreateInputState(int eInputState)
     {
-        EPlayerInputState  inputState = (EPlayerInputState)eInputState;
-        return d_playerInputState[inputState];
-    }
-
-    public IState CreateState(int nPlayerState)
-    {
-        EPlayerState ePlayerState = (EPlayerState)nPlayerState;
-        if (!d_playerState.ContainsKey(ePlayerState))
+        EPlayerInputState inputState = (EPlayerInputState)eInputState;
+        if (!d_playerInputState.ContainsKey(inputState))
         {
-            switch (ePlayerState)
+            switch (inputState)
             {
-                case EPlayerState.Idle:
-                    d_playerState[ePlayerState] = new IdleState();
+                case EPlayerInputState.Stop:
+                    d_playerInputState[inputState] = new StopState();
                     break;
-                case EPlayerState.Run:
-                    d_playerState[ePlayerState] = new RunState();
+                    
+                case EPlayerInputState.Run:
+                    d_playerInputState[inputState] = new RunState();
                     break;
-                case EPlayerState.RunStop:
-                    d_playerState[ePlayerState] = new RunStopState();
+                case EPlayerInputState.Jump:
+                    d_playerInputState[inputState] = new JumpState();
                     break;
-                case EPlayerState.Air:
-                    d_playerState[ePlayerState] = new AirState();
-                    break;
-                case EPlayerState.Dead:
-                    d_playerState[ePlayerState] = new DeadState();
-                    break;
-                case EPlayerState.Jump:
-                    d_playerState[ePlayerState] = new AirState();
-                    break;
-                default:
+                    default:
                     break;
             }
         }
-        return d_playerState[ePlayerState];
+        return d_playerInputState[inputState];
     }
+
 }

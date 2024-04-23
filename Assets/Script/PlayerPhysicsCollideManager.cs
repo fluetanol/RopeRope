@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-public class PlayerPhysicsCollideManager : SingletonMonobehavior<PlayerPhysicsCollideManager>
+public class PlayerStatusManager : SingletonMonobehavior<PlayerStatusManager>
 {
     public Vector2 CurrentPosition;
     public Vector2 NextPosition;

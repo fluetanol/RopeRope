@@ -1,52 +1,51 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class IdleState : IState
+public class IdleState : IConditionState
 {
-    public void PlayState(Transform transform, Rigidbody2D rigidbody2D)
-    {
-    }
+    public void PlayConditionState(Transform transform, Rigidbody2D rigidbody2D){
 
+    }
 
 }
 
-public class RunState : IState
+
+public class AirState : IConditionState
 {
-    public void PlayState(Transform transform, Rigidbody2D rigidbody2D)
+    public void PlayConditionState(Transform transform, Rigidbody2D rigidbody2D)
     {
+
     }
 }
 
-
-public class RunStopState : IState
+public class DeadState : IConditionState
 {
-    public void PlayState(Transform transform, Rigidbody2D rigidbody2D)
+    public void PlayConditionState(Transform transform, Rigidbody2D rigidbody2D)
     {
 
-    }
-
-}
-
-public class AirState : IState
-{   
-    public void PlayState(Transform transform, Rigidbody2D rigidbody2D)
-    {
     }
 }
 
 
-
-public class JumpState : IState
+public class StopState : IInputState
 {
-    public void PlayState(Transform transform, Rigidbody2D rigidbody2D)
+    public void PlayInputState(InputAction.CallbackContext context, Transform transform)
     {
     }
 }
 
-
-public class DeadState : IState
+public class RunState : IInputState
 {
-    public void PlayState(Transform transform, Rigidbody2D rigidbody2D)
-    {
-     
+    public void PlayInputState(InputAction.CallbackContext context, Transform transform){
     }
 }
+
+
+
+public class JumpState : IInputState
+{
+    public void PlayInputState(InputAction.CallbackContext context, Transform transform)
+    {
+    }
+}
+

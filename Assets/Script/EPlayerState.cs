@@ -9,6 +9,7 @@ public enum EPlayerState
 }
 
 public enum EPlayerInputState{
+    Stop,
     Run,
     Jump,
     Launch,

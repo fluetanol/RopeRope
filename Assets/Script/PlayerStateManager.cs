@@ -8,7 +8,8 @@ public interface IRopeMove{
 //플레이어 state만 조절하는 클래스
 public class PlayerStateManager : SingletonMonobehavior<PlayerStateManager>
 {
-    public EPlayerState PlayerState;  
+    public EPlayerConditionState PlayerConditionState =EPlayerConditionState.Idle;
+    public EPlayerInputState PlayerInputState = EPlayerInputState.Stop;
     private Rigidbody2D _playerRigidBody2d;
 
     void Start(){
@@ -16,8 +17,10 @@ public class PlayerStateManager : SingletonMonobehavior<PlayerStateManager>
     }
 
     void FixedUpdate(){
-        IState state = PlayerStateFactory.Instance.CreateState((int)PlayerState);
-        state.PlayState(transform, _playerRigidBody2d);
+        IConditionState cState = PlayerStateFactory.Instance.CreateConditionState((int) PlayerConditionState);
+        IInputState iState = PlayerStateFactory.Instance.CreateInputState((int) PlayerInputState);
+        iState.PlayInputState(new InputAction.CallbackContext(),transform);
+        cState.PlayConditionState(transform, _playerRigidBody2d);
     }
 
     protected override void SetInstance()=>Instance = this;

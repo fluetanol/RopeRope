@@ -44,15 +44,15 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 30
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -148,9 +148,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 87
-        y: 375
+        y: 438
         width: 11
-        height: 125
+        height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,9 +169,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 150
-        y: 375
-        width: 24
-        height: 124
+        y: 438
+        width: 11
+        height: 61
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -841,9 +841,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 274
-        y: 124
-        width: 25
-        height: 118
+        y: 187
+        width: 23
+        height: 55
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1046,6 +1046,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: stickman-removebg-preview_44
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 375
+        width: 11
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43e32113b5c9c704da1afd72b396e209
+      internalID: -973021827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stickman-removebg-preview_45
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 376
+        width: 23
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4daabb8818f7e4740acd50221d2446d0
+      internalID: -1361421444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stickman-removebg-preview_46
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 125
+        width: 19
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03d9c9d788af0a489716e73ad6fe641
+      internalID: 1539640769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1096,6 +1159,9 @@ TextureImporter:
       stickman-removebg-preview_41: 1847948850
       stickman-removebg-preview_42: 838008317
       stickman-removebg-preview_43: -1219839230
+      stickman-removebg-preview_44: -973021827
+      stickman-removebg-preview_45: -1361421444
+      stickman-removebg-preview_46: 1539640769
       stickman-removebg-preview_5: 571704049
       stickman-removebg-preview_6: -797485720
       stickman-removebg-preview_7: 407027645
