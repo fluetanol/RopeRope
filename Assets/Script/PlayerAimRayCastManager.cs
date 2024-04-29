@@ -15,6 +15,9 @@ public class PlayerAimRayCastManager : MonoBehaviour, IMouseClick
     private float time;
     public float speed =3;
 
+    public Transform debugCircle;
+    Vector2 hitPoint;
+
     void Start(){
         _lineRenderer = GetComponent<LineRenderer>();
     }
@@ -24,10 +27,12 @@ public class PlayerAimRayCastManager : MonoBehaviour, IMouseClick
         if(isClick) {
             time += Time.deltaTime;
             _lineRenderer.SetPosition(1, (_aimPosition.normalized)*time*speed);
-        }else{
+        }
+        else{
             _aimPosition = (Vector3)CursorManager.Instance.GetCursorPosition() - this.transform.position;
             _lineRenderer.SetPosition(1, _aimPosition);
         }
+
         if(time>0.5f){
             ResetRope();
         }
@@ -37,6 +42,10 @@ public class PlayerAimRayCastManager : MonoBehaviour, IMouseClick
     {
         ResetRope();
         isClick = true;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _aimPosition, 100, LayerMask.GetMask("Default"));
+        hitPoint = hit.point;
+        debugCircle.position = hit.point;
+
         _aimPosition = (Vector3)CursorManager.Instance.GetCursorPosition() - this.transform.position;
     }
 

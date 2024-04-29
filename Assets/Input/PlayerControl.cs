@@ -46,18 +46,27 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d488fd0-069d-4026-bbaa-076e1fefd330"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Aim"",
                     ""type"": ""Value"",
-                    ""id"": ""a01dfe00-9ecb-480d-8a81-4d4b1b60f06a"",
+                    ""id"": ""1bc9131b-5928-49d8-bf18-92ec96ef2992"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Click"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
-                    ""id"": ""3d488fd0-069d-4026-bbaa-076e1fefd330"",
+                    ""id"": ""de8c837c-2984-445d-a1cc-631142750a05"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -100,17 +109,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""14e2a61c-2925-4860-87e7-5e6d0c389b20"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d6a365c9-a168-4f63-a288-84566dd8446f"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -130,6 +128,78 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f4973a9-4287-4dea-828b-929b4c0dd96e"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""be8972af-47ce-46e9-ad85-c52b9ff97bbe"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""25fb18ee-c6af-4923-8ed1-c3fe90392815"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""da7c9201-0b79-4759-b089-352b5197dc98"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""RopeLocomotion"",
+            ""id"": ""e061e893-cb32-45e2-98be-e1e78647f454"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""b153bc3d-8f0b-42fc-9d83-8a1f85853c01"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""473e42d2-6a23-4323-a1d3-ca5630c89729"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -140,8 +210,12 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Locomotion = asset.FindActionMap("Locomotion", throwIfNotFound: true);
         m_Locomotion_NormalMove = m_Locomotion.FindAction("NormalMove", throwIfNotFound: true);
         m_Locomotion_Jump = m_Locomotion.FindAction("Jump", throwIfNotFound: true);
-        m_Locomotion_Aim = m_Locomotion.FindAction("Aim", throwIfNotFound: true);
         m_Locomotion_Click = m_Locomotion.FindAction("Click", throwIfNotFound: true);
+        m_Locomotion_Aim = m_Locomotion.FindAction("Aim", throwIfNotFound: true);
+        m_Locomotion_Dash = m_Locomotion.FindAction("Dash", throwIfNotFound: true);
+        // RopeLocomotion
+        m_RopeLocomotion = asset.FindActionMap("RopeLocomotion", throwIfNotFound: true);
+        m_RopeLocomotion_Newaction = m_RopeLocomotion.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,16 +279,18 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private List<ILocomotionActions> m_LocomotionActionsCallbackInterfaces = new List<ILocomotionActions>();
     private readonly InputAction m_Locomotion_NormalMove;
     private readonly InputAction m_Locomotion_Jump;
-    private readonly InputAction m_Locomotion_Aim;
     private readonly InputAction m_Locomotion_Click;
+    private readonly InputAction m_Locomotion_Aim;
+    private readonly InputAction m_Locomotion_Dash;
     public struct LocomotionActions
     {
         private @PlayerControl m_Wrapper;
         public LocomotionActions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @NormalMove => m_Wrapper.m_Locomotion_NormalMove;
         public InputAction @Jump => m_Wrapper.m_Locomotion_Jump;
-        public InputAction @Aim => m_Wrapper.m_Locomotion_Aim;
         public InputAction @Click => m_Wrapper.m_Locomotion_Click;
+        public InputAction @Aim => m_Wrapper.m_Locomotion_Aim;
+        public InputAction @Dash => m_Wrapper.m_Locomotion_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Locomotion; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -230,12 +306,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Aim.started += instance.OnAim;
-            @Aim.performed += instance.OnAim;
-            @Aim.canceled += instance.OnAim;
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(ILocomotionActions instance)
@@ -246,12 +325,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Aim.started -= instance.OnAim;
-            @Aim.performed -= instance.OnAim;
-            @Aim.canceled -= instance.OnAim;
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(ILocomotionActions instance)
@@ -269,11 +351,62 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         }
     }
     public LocomotionActions @Locomotion => new LocomotionActions(this);
+
+    // RopeLocomotion
+    private readonly InputActionMap m_RopeLocomotion;
+    private List<IRopeLocomotionActions> m_RopeLocomotionActionsCallbackInterfaces = new List<IRopeLocomotionActions>();
+    private readonly InputAction m_RopeLocomotion_Newaction;
+    public struct RopeLocomotionActions
+    {
+        private @PlayerControl m_Wrapper;
+        public RopeLocomotionActions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_RopeLocomotion_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_RopeLocomotion; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(RopeLocomotionActions set) { return set.Get(); }
+        public void AddCallbacks(IRopeLocomotionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        private void UnregisterCallbacks(IRopeLocomotionActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        public void RemoveCallbacks(IRopeLocomotionActions instance)
+        {
+            if (m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IRopeLocomotionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public RopeLocomotionActions @RopeLocomotion => new RopeLocomotionActions(this);
     public interface ILocomotionActions
     {
         void OnNormalMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+    }
+    public interface IRopeLocomotionActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

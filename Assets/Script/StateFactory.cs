@@ -30,6 +30,9 @@ public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
                 case EPlayerConditionState.Air:
                     d_playerConditionState[conditionState] = new AirState();
                     break;
+                case EPlayerConditionState.Koyote:
+                    d_playerConditionState[conditionState] = new KoyoteState();
+                    break;
                 case EPlayerConditionState.Dead:
                     d_playerConditionState[conditionState] =  new DeadState();
                     break;
@@ -52,14 +55,13 @@ public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
                 case EPlayerInputState.Stop:
                     d_playerInputState[inputState] = new StopState();
                     break;
-                    
                 case EPlayerInputState.Run:
                     d_playerInputState[inputState] = new RunState();
                     break;
                 case EPlayerInputState.Jump:
                     d_playerInputState[inputState] = new JumpState();
                     break;
-                    default:
+                default:
                     break;
             }
         }
