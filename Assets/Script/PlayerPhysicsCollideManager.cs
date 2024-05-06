@@ -9,6 +9,14 @@ public class PlayerStatusManager : SingletonMonobehavior<PlayerStatusManager>
     public Vector2 CurrentMoveDir;
     public Vector2 CurrentAirDir;
     public Vector2 CurrentInputDir;
+    public Vector2 koyote;
+
+
+    void Start(){
+        
+    }
+
+
     void FixedUpdate() {
         CurrentPosition = PlayerStatus.CurrentPos;
         NextPosition = PlayerStatus.NextPos;

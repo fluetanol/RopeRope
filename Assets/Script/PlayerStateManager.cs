@@ -23,8 +23,6 @@ public class PlayerStateManager : SingletonMonobehavior<PlayerStateManager>
 
     void FixedUpdate(){
         IConditionState cState = PlayerStateFactory.Instance.CreateConditionState((int) PlayerConditionState);
-        if((int)PlayerInputState > 3) PlayerInputState = EPlayerInputState.RunAndJump;
-        else if((int) PlayerInputState < 0) PlayerInputState = EPlayerInputState.Stop;
         IInputState iState = PlayerStateFactory.Instance.CreateInputState((int) PlayerInputState);
         iState.PlayInputState(new InputAction.CallbackContext(),transform);
         cState.PlayConditionState(transform, _playerRigidBody2d);

@@ -70,7 +70,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -141,37 +141,26 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""be8972af-47ce-46e9-ad85-c52b9ff97bbe"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": ""MultiTap"",
+                    ""name"": """",
+                    ""id"": ""68269f7f-9ebf-4498-8d8e-91cd59569abd"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": ""MultiTap(tapTime=-1,pressPoint=0.1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""25fb18ee-c6af-4923-8ed1-c3fe90392815"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""da7c9201-0b79-4759-b089-352b5197dc98"",
+                    ""name"": """",
+                    ""id"": ""2c9b8345-b10f-4b4e-99ff-781a79914ac9"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
+                    ""interactions"": ""MultiTap(tapTime=-1,pressPoint=0.1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -180,26 +169,70 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             ""id"": ""e061e893-cb32-45e2-98be-e1e78647f454"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
                     ""id"": ""b153bc3d-8f0b-42fc-9d83-8a1f85853c01"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""473e42d2-6a23-4323-a1d3-ca5630c89729"",
-                    ""path"": """",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""9dd00980-83e3-4e12-adb4-3c57c63482f9"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e9a59555-db0b-4c6b-8e1c-412257c386d6"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""600d9f2a-1b9e-4bfe-ac2f-6f9c698748a5"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""44400e43-d118-4e98-9112-9770404c1ace"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f5521465-d7e6-4e4d-95ac-bf97ab069a0b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -215,7 +248,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Locomotion_Dash = m_Locomotion.FindAction("Dash", throwIfNotFound: true);
         // RopeLocomotion
         m_RopeLocomotion = asset.FindActionMap("RopeLocomotion", throwIfNotFound: true);
-        m_RopeLocomotion_Newaction = m_RopeLocomotion.FindAction("New action", throwIfNotFound: true);
+        m_RopeLocomotion_Move = m_RopeLocomotion.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -355,12 +388,12 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     // RopeLocomotion
     private readonly InputActionMap m_RopeLocomotion;
     private List<IRopeLocomotionActions> m_RopeLocomotionActionsCallbackInterfaces = new List<IRopeLocomotionActions>();
-    private readonly InputAction m_RopeLocomotion_Newaction;
+    private readonly InputAction m_RopeLocomotion_Move;
     public struct RopeLocomotionActions
     {
         private @PlayerControl m_Wrapper;
         public RopeLocomotionActions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_RopeLocomotion_Newaction;
+        public InputAction @Move => m_Wrapper.m_RopeLocomotion_Move;
         public InputActionMap Get() { return m_Wrapper.m_RopeLocomotion; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -370,16 +403,16 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
         }
 
         private void UnregisterCallbacks(IRopeLocomotionActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
         }
 
         public void RemoveCallbacks(IRopeLocomotionActions instance)
@@ -407,6 +440,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     }
     public interface IRopeLocomotionActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }

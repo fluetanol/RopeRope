@@ -25,14 +25,22 @@ public class KoyoteState : IConditionState{
     {
         PlayerInputManager.Instance.time += Time.fixedDeltaTime;
         PlayerStatus.CurrentAirDirection = Vector2.down;
-        if (_koyoteTime >= PlayerStatus.KoyoteTime){
+        if (_koyoteTime > PlayerStatus.KoyoteTime){
             _koyoteTime = 0;
             PlayerStateManager.Instance.PlayerConditionState = EPlayerConditionState.Air;
         }
         else _koyoteTime += Time.fixedDeltaTime;
-        
     }
 }
+
+public class RopeState : IConditionState
+{
+    public void PlayConditionState(Transform transform, Rigidbody2D rigidbody2D)
+    {
+
+    }
+}
+
 
 public class DeadState : IConditionState
 {
@@ -73,8 +81,6 @@ public class StopState : MovingState, IInputState
     }
 }
 
-
-
 public class RunState : MovingState, IInputState
 {
     public void PlayInputState(InputAction.CallbackContext context, Transform transform){
@@ -88,5 +94,12 @@ public class JumpState : MovingState, IInputState
     {
         Run();
         Jump();
+    }
+}
+
+public class RopeMoveState : IInputState
+{
+    public void PlayInputState(InputAction.CallbackContext context, Transform transform)
+    {
     }
 }
