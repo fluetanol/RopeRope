@@ -37,6 +37,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""RopeMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""c7aaaf57-9b86-4695-ae3d-159c7ab3cb5f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""5c61003b-8cac-40ab-9445-91fd0fe963c5"",
@@ -161,76 +170,59 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""RopeLocomotion"",
-            ""id"": ""e061e893-cb32-45e2-98be-e1e78647f454"",
-            ""actions"": [
-                {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""b153bc3d-8f0b-42fc-9d83-8a1f85853c01"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": ""2D Vector"",
-                    ""id"": ""9dd00980-83e3-4e12-adb4-3c57c63482f9"",
+                    ""id"": ""3301ebad-e32d-4fb4-ac4a-17c3e2efbdfe"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""RopeMove"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""e9a59555-db0b-4c6b-8e1c-412257c386d6"",
+                    ""id"": ""9e734f4c-43ce-4632-8bc1-2d8ca117cdef"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""RopeMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""600d9f2a-1b9e-4bfe-ac2f-6f9c698748a5"",
+                    ""id"": ""83b91d76-ced6-4c78-bd2e-c2854ad2dfb8"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""RopeMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""44400e43-d118-4e98-9112-9770404c1ace"",
+                    ""id"": ""05f841c7-5eb1-4905-b999-98833934c0e9"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""RopeMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""f5521465-d7e6-4e4d-95ac-bf97ab069a0b"",
+                    ""id"": ""5c41dc95-c7bc-481f-9598-9dbe0e057362"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""RopeMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -242,13 +234,11 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         // Locomotion
         m_Locomotion = asset.FindActionMap("Locomotion", throwIfNotFound: true);
         m_Locomotion_NormalMove = m_Locomotion.FindAction("NormalMove", throwIfNotFound: true);
+        m_Locomotion_RopeMove = m_Locomotion.FindAction("RopeMove", throwIfNotFound: true);
         m_Locomotion_Jump = m_Locomotion.FindAction("Jump", throwIfNotFound: true);
         m_Locomotion_Click = m_Locomotion.FindAction("Click", throwIfNotFound: true);
         m_Locomotion_Aim = m_Locomotion.FindAction("Aim", throwIfNotFound: true);
         m_Locomotion_Dash = m_Locomotion.FindAction("Dash", throwIfNotFound: true);
-        // RopeLocomotion
-        m_RopeLocomotion = asset.FindActionMap("RopeLocomotion", throwIfNotFound: true);
-        m_RopeLocomotion_Move = m_RopeLocomotion.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -311,6 +301,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Locomotion;
     private List<ILocomotionActions> m_LocomotionActionsCallbackInterfaces = new List<ILocomotionActions>();
     private readonly InputAction m_Locomotion_NormalMove;
+    private readonly InputAction m_Locomotion_RopeMove;
     private readonly InputAction m_Locomotion_Jump;
     private readonly InputAction m_Locomotion_Click;
     private readonly InputAction m_Locomotion_Aim;
@@ -320,6 +311,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         private @PlayerControl m_Wrapper;
         public LocomotionActions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @NormalMove => m_Wrapper.m_Locomotion_NormalMove;
+        public InputAction @RopeMove => m_Wrapper.m_Locomotion_RopeMove;
         public InputAction @Jump => m_Wrapper.m_Locomotion_Jump;
         public InputAction @Click => m_Wrapper.m_Locomotion_Click;
         public InputAction @Aim => m_Wrapper.m_Locomotion_Aim;
@@ -336,6 +328,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @NormalMove.started += instance.OnNormalMove;
             @NormalMove.performed += instance.OnNormalMove;
             @NormalMove.canceled += instance.OnNormalMove;
+            @RopeMove.started += instance.OnRopeMove;
+            @RopeMove.performed += instance.OnRopeMove;
+            @RopeMove.canceled += instance.OnRopeMove;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -355,6 +350,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @NormalMove.started -= instance.OnNormalMove;
             @NormalMove.performed -= instance.OnNormalMove;
             @NormalMove.canceled -= instance.OnNormalMove;
+            @RopeMove.started -= instance.OnRopeMove;
+            @RopeMove.performed -= instance.OnRopeMove;
+            @RopeMove.canceled -= instance.OnRopeMove;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -384,62 +382,13 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         }
     }
     public LocomotionActions @Locomotion => new LocomotionActions(this);
-
-    // RopeLocomotion
-    private readonly InputActionMap m_RopeLocomotion;
-    private List<IRopeLocomotionActions> m_RopeLocomotionActionsCallbackInterfaces = new List<IRopeLocomotionActions>();
-    private readonly InputAction m_RopeLocomotion_Move;
-    public struct RopeLocomotionActions
-    {
-        private @PlayerControl m_Wrapper;
-        public RopeLocomotionActions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_RopeLocomotion_Move;
-        public InputActionMap Get() { return m_Wrapper.m_RopeLocomotion; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(RopeLocomotionActions set) { return set.Get(); }
-        public void AddCallbacks(IRopeLocomotionActions instance)
-        {
-            if (instance == null || m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
-        }
-
-        private void UnregisterCallbacks(IRopeLocomotionActions instance)
-        {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
-        }
-
-        public void RemoveCallbacks(IRopeLocomotionActions instance)
-        {
-            if (m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IRopeLocomotionActions instance)
-        {
-            foreach (var item in m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_RopeLocomotionActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public RopeLocomotionActions @RopeLocomotion => new RopeLocomotionActions(this);
     public interface ILocomotionActions
     {
         void OnNormalMove(InputAction.CallbackContext context);
+        void OnRopeMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-    }
-    public interface IRopeLocomotionActions
-    {
-        void OnMove(InputAction.CallbackContext context);
     }
 }

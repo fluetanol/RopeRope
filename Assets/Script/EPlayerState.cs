@@ -9,6 +9,7 @@ public enum EPlayerInputState{
 public enum EPlayerConditionState
 {
     Idle,
+    RopeIdle,
     Air,
     Koyote,
     Dash,

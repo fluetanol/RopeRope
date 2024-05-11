@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class PlayerStatus
@@ -14,6 +12,7 @@ public static class PlayerStatus
     public static Vector2 CurrentAirDirection = Vector2.zero;
     public static Vector2 CurrentInputDirection = Vector2.zero;
     public static float JumpGravity;
-    public static float FallGravity = 4.5f;
+    public static float FallGravity = 4.25f;
     public static float KoyoteTime = 0.2f;
+    public static float RopeCoolTime = 0.5f;
 }

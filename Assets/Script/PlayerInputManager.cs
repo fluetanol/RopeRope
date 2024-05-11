@@ -30,7 +30,7 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
     }
 
     public void FixedUpdate(){
-        MoveFixedUpdate();
+        if(PlayerStateManager.Instance.PlayerConditionState != EPlayerConditionState.RopeIdle) MoveFixedUpdate();
     }
 
     public void OnJump(InputAction.CallbackContext callback){
@@ -45,7 +45,8 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
     public void OnMove(InputAction.CallbackContext callback){
         Vector2 inputVector = callback.ReadValue<Vector2>();
         PlayerStatus.CurrentInputDirection = inputVector;
-        if (callback.canceled) PlayerStateManager.Instance.PlayerInputState = EPlayerInputState.Stop;
+        if (callback.canceled && PlayerStateManager.Instance.PlayerInputState != EPlayerInputState.Launch) 
+        PlayerStateManager.Instance.PlayerInputState = EPlayerInputState.Stop;
         
         else if (PlayerStateManager.Instance.PlayerConditionState == EPlayerConditionState.Air 
         || PlayerStateManager.Instance.PlayerConditionState == EPlayerConditionState.Koyote
@@ -55,7 +56,6 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
     }
 
     public void OnDash(InputAction.CallbackContext callback){
-        //print(callback.started +" "+callback.performed +" "+callback.canceled);
     }
 
     public void OnRopeMove(InputAction.CallbackContext callback){
@@ -63,13 +63,12 @@ public class PlayerInputManager : SingletonMonobehavior<PlayerInputManager>, INo
     }
 
     
-    public void MoveFixedUpdate(){;
+    public void MoveFixedUpdate(){
         PlayerStatus.CurrentPos = _playerRigidBody2d.position;
         PlayerStatus.MoveDirection = ((PlayerStatus.CurrentMoveDirection + PlayerStatus.CurrentJumpDirection) * Time.fixedDeltaTime) + PlayerStatus.CurrentAirDirection * PlayerStatus.FallGravity * time * time;
         PlayerStatus.MoveDirection.x *= PlayerStatus.Speed;
         PlayerStatus.NextPos = PlayerStatus.CurrentPos + PlayerStatus.MoveDirection;
         CheckCollide();
-
         _playerRigidBody2d.MovePosition(PlayerStatus.NextPos);
     }
 

@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "RopeMove",
+                    "type": "Value",
+                    "id": "c7aaaf57-9b86-4695-ae3d-159c7ab3cb5f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "5c61003b-8cac-40ab-9445-91fd0fe963c5",
@@ -139,76 +148,59 @@
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "RopeLocomotion",
-            "id": "e061e893-cb32-45e2-98be-e1e78647f454",
-            "actions": [
-                {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "b153bc3d-8f0b-42fc-9d83-8a1f85853c01",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "2D Vector",
-                    "id": "9dd00980-83e3-4e12-adb4-3c57c63482f9",
+                    "id": "3301ebad-e32d-4fb4-ac4a-17c3e2efbdfe",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "RopeMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "e9a59555-db0b-4c6b-8e1c-412257c386d6",
+                    "id": "9e734f4c-43ce-4632-8bc1-2d8ca117cdef",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "RopeMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "600d9f2a-1b9e-4bfe-ac2f-6f9c698748a5",
+                    "id": "83b91d76-ced6-4c78-bd2e-c2854ad2dfb8",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "RopeMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "44400e43-d118-4e98-9112-9770404c1ace",
+                    "id": "05f841c7-5eb1-4905-b999-98833934c0e9",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "RopeMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "f5521465-d7e6-4e4d-95ac-bf97ab069a0b",
+                    "id": "5c41dc95-c7bc-481f-9598-9dbe0e057362",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "RopeMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

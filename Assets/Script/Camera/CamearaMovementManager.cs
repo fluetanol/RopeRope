@@ -34,6 +34,7 @@ public class CamearaMovementManager : MonoBehaviour
         Vector3 lerpPosition = Vector2.Lerp(transform.position, nextPosition, Time.deltaTime * _cameraMoveSpeed);
 
         lerpPosition.z = -10;
+        if(PlayerStateManager.Instance.PlayerInputState != EPlayerInputState.Launch)
         transform.position = lerpPosition;
         return lerpPosition;
     }

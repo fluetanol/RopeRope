@@ -27,6 +27,9 @@ public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
                 case EPlayerConditionState.Idle:
                     d_playerConditionState[conditionState] = new IdleState();
                     break;
+                case EPlayerConditionState.RopeIdle:
+                    d_playerConditionState[conditionState] = new RopeIdleState();
+                    break;
                 case EPlayerConditionState.Air:
                     d_playerConditionState[conditionState] = new AirState();
                     break;
@@ -63,6 +66,9 @@ public class PlayerStateFactory : Singleton<PlayerStateFactory>, IStateFactory
                     break;
                 case EPlayerInputState.Jump:
                     d_playerInputState[inputState] = new JumpState();
+                    break;
+                case EPlayerInputState.Launch:
+                    d_playerInputState[inputState] = new LaunchState();
                     break;
                 case EPlayerInputState.RopeMove:
                     d_playerInputState[inputState] = new RopeMoveState();

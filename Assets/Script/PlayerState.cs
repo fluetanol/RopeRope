@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class IdleState : IConditionState
 {
@@ -9,12 +10,29 @@ public class IdleState : IConditionState
 }
 
 
+public class RopeIdleState : IConditionState
+{
+    public void PlayConditionState(Transform transform, Rigidbody2D rigidbody2D)
+    {
+        PlayerInputManager.Instance.time = 0;
+    }
+}
+
+
+
 public class AirState : IConditionState
 {
     public void PlayConditionState(Transform transform, Rigidbody2D rigidbody2D)
     {
-        PlayerInputManager.Instance.time += Time.fixedDeltaTime;
-        PlayerStatus.CurrentAirDirection = Vector2.down;
+        if (PlayerInputManager.Instance.time < 0.6f)  {
+            PlayerInputManager.Instance.time += Time.fixedDeltaTime;
+            PlayerStatus.CurrentAirDirection = Vector2.down;
+        }
+        else{
+            Debug.Log("!!");
+            //PlayerStatus.CurrentAirDirection = Vector2.zero;
+        }
+
     }
 }
 
@@ -28,6 +46,7 @@ public class KoyoteState : IConditionState{
         if (_koyoteTime > PlayerStatus.KoyoteTime){
             _koyoteTime = 0;
             PlayerStateManager.Instance.PlayerConditionState = EPlayerConditionState.Air;
+            
         }
         else _koyoteTime += Time.fixedDeltaTime;
     }
@@ -90,12 +109,21 @@ public class RunState : MovingState, IInputState
 
 public class JumpState : MovingState, IInputState
 {
-    public void PlayInputState(InputAction.CallbackContext context, Transform transform)
-    {
+    public void PlayInputState(InputAction.CallbackContext context, Transform transform){
         Run();
         Jump();
     }
 }
+
+
+public class LaunchState : IInputState
+{
+    public void PlayInputState(InputAction.CallbackContext context, Transform transform)
+    {
+
+    }
+}
+
 
 public class RopeMoveState : IInputState
 {
